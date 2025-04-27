@@ -1,4 +1,4 @@
-"use server";
+
 import { PrismaClient } from "@prisma/client";
 
 // Declare global type augmentation for NodeJS.Global

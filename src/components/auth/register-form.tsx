@@ -23,7 +23,7 @@ import { register } from "@/actions/register";
 export const RegisterForm = () => {
        const [error, setError] = useState<string | undefined>("");
        const [success, setSuccess] = useState<string | undefined>("");
-       const [loading, setLoading] = useState(false);
+       
     
 
 
@@ -38,10 +38,10 @@ export const RegisterForm = () => {
     })
 
     const OnSubmit =async  (values: z.infer<typeof RegisterSchema>) => {
-        setLoading(true);
-        setError("");
+      register(values);
+      setError("");
         setSuccess("");
-     register(values)
+      
     }
     return(
         <CardWrapper
@@ -54,7 +54,7 @@ export const RegisterForm = () => {
                 <form onSubmit={form.handleSubmit(OnSubmit)}
                     className="space-y-6">
                    <div className="space-y-4">
-                    {loading && <p className="text-center">Loading...</p>}
+                 
                     
                     <FormField
                         control={form.control}
@@ -63,7 +63,7 @@ export const RegisterForm = () => {
                             <FormItem>
                                 <FormLabel>Name</FormLabel>
                                 <FormControl>
-                                    <Input type="text" {...field} placeholder="Enter your name" disabled={loading} className="input" />
+                                    <Input type="text" {...field} placeholder="Enter your name"  className="input" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -76,7 +76,7 @@ export const RegisterForm = () => {
                             <FormItem>
                                 <FormLabel>Email</FormLabel>
                                 <FormControl>
-                                    <Input type="email" {...field} placeholder="Enter your email" disabled={loading} className="input" />
+                                    <Input type="email" {...field} placeholder="Enter your email"  className="input" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -88,7 +88,7 @@ export const RegisterForm = () => {
                             <FormItem>
                                 <FormLabel>Password</FormLabel>
                                 <FormControl>
-                                    <Input type="password" {...field} placeholder="********" className="input" disabled={loading} />
+                                    <Input type="password" {...field} placeholder="********" className="input"  />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>

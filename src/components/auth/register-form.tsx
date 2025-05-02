@@ -16,6 +16,7 @@ import {   Form,
   import {FormSuccess} from "../form-success"
    import {useState} from "react";
 import { register } from "@/actions/register";
+import {useRouter} from 'next/navigation'
 
   
 
@@ -23,7 +24,7 @@ import { register } from "@/actions/register";
 export const RegisterForm = () => {
        const [error, setError] = useState<string | undefined>("");
        const [success, setSuccess] = useState<string | undefined>("");
-       
+       const router = useRouter();
     
 
 
@@ -37,11 +38,20 @@ export const RegisterForm = () => {
         },
     })
 
-    const OnSubmit =async  (values: z.infer<typeof RegisterSchema>) => {
+    const OnSubmit =async (values: z.infer<typeof RegisterSchema>) => {
       register(values);
-      setError("");
-        setSuccess("");
+      const res= await register(values);
+        if (res?.success) {
+            setSuccess("Account created successfully");
+            setError("");
+            router.push("/auth/login")
       
+        } else {
+            setError(res?.error);
+            setSuccess("");
+        }
+     
+           
     }
     return(
         <CardWrapper

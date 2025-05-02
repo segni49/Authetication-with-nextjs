@@ -16,6 +16,7 @@ import {   Form,
   import {FormSuccess} from "../form-success"
   import {login} from "@/actions/login"
    import {useState} from "react";
+   import { useRouter } from "next/navigation";
   
 
 
@@ -23,6 +24,7 @@ export const LoginForm = () => {
        const [error, setError] = useState<string | undefined>("");
        const [success, setSuccess] = useState<string | undefined>("");
        const [loading, setLoading] = useState(false);
+       const router = useRouter();
 
 
     const form = useForm<z.infer<typeof LoginSchema>>({
@@ -33,14 +35,16 @@ export const LoginForm = () => {
         },
     })
 
-    const OnSubmit = (values: z.infer<typeof LoginSchema>) => {
+    const OnSubmit = async (values: z.infer<typeof LoginSchema>) => {
         setLoading(true);
         setError("");
         setSuccess("");
-      login(values).then((res)=> {
-        setError(res.Error);
-        setSuccess(res.success);
-      })
+      login(values);
+     const response = await login(values);
+     if(response.success) {
+         router.push("/settings")
+     } 
+      
     }
     return(
         <CardWrapper

@@ -52,7 +52,7 @@ model Account {
   @@map("accounts")
 }
 
-model VerficationToken {
+model VerificationToken {
 
      id            String    @id @default(cuid())
      email         String

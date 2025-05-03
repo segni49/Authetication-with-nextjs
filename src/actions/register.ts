@@ -3,7 +3,7 @@ import * as z from "zod";
 import {RegisterSchema} from "@/schemas"
 import bcrypt from "bcryptjs"
 import prisma from "@/lib/db"
-import { getUserByEmail } from "../../user";
+import { getUserByEmail } from "../data/user";
 // Server action function
 export async function register(values: z.infer<typeof RegisterSchema>) {
     try {

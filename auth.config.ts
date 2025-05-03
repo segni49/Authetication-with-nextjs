@@ -2,7 +2,7 @@
 import type {NextAuthConfig} from "next-auth";
 import { LoginSchema } from "@/schemas";
 import Credentials from "next-auth/providers/credentials";
-import { getUserByEmail } from "./user";
+import { getUserByEmail } from "./src/data/user";
 import bcrypt from "bcryptjs";
 import Github from "next-auth/providers/github"
 import Google from "next-auth/providers/google"

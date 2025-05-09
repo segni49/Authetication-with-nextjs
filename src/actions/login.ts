@@ -5,7 +5,6 @@ import { signIn } from "../../auth";
 import { DEFAULT_LOGIN_REDIRECT } from "../../routes";
 import { AuthError } from "next-auth";
 
-
 // Server action function
 export async function login(values: z.infer<typeof LoginSchema>) {
   const result = LoginSchema.safeParse(values);
@@ -30,4 +29,5 @@ export async function login(values: z.infer<typeof LoginSchema>) {
         }
            throw error;
     }
+
 }

@@ -4,7 +4,6 @@ import authConfig from "./auth.config";
 import prisma from "@/lib/db";
 import { getUserById } from "./src/data/user";
 
-
 export const {
     handlers: { GET, POST },
     auth,
@@ -48,6 +47,7 @@ export const {
             const user = await getUserById(token.sub);
 
             if(!user) return token;
+            
             token.role = user.role;
 
             return token;
